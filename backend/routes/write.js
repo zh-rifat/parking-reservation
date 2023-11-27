@@ -10,13 +10,12 @@ export const writeData=async(req,res)=>{
     const values=await readSheet();
     console.log(values);
     const index=parseInt(position)-1;
-    if(values[index]?.at(0)!=null){
-      console.log(values[index])
+    if(values[index]!=null){
       return res.status(400).json({success:false,msg:"already reserved.",data:null});
     }
-    values[index][0]=value;
+    values[index]=value;
     console.log(values);
-    const response = await writeSheet(values);
+    const response = await writeSheet([[...values]]);
     return res.status(200).json({success:true,msg:"data write successful",data:null});
   } catch (error) {
     console.log(error);

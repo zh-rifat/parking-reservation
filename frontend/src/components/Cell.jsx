@@ -17,9 +17,10 @@ const Cell = ({disabled,reserved,onClick,cellNo}) => {
   }
 
   return (
-    <div className={`flex flex-col relateive items-center justify-center h-40 w-24 ${disabled?"cursor-not-allowed bg-slate-500":"cursor-pointer bg-slate-300"} ${reserved&&"!bg-green-900 !cursor-pointer"}`}
+    <div className={`flex flex-col rounded-sm shadow-md items-center justify-center h-40 w-24 ${disabled?"cursor-not-allowed bg-slate-500":"cursor-pointer bg-slate-300"} ${reserved&&"!bg-green-900 !cursor-pointer"}`}
       onClick={handleClick}
     >
+      <Loader loading={loading}/>
       <p className={` ${!disabled&&!reserved&&colorMap.default} ${disabled&&colorMap.disabled} ${reserved&&colorMap.reserved}`}>{cellNo}</p>
       {disabled&&
         (<span className='text-slate-900 text-sm font-bold'>
@@ -36,7 +37,6 @@ const Cell = ({disabled,reserved,onClick,cellNo}) => {
           available
         </p>)
       }
-      <Loader loading={loading}/>
           
 
     </div>
